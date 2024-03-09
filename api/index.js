@@ -1,6 +1,7 @@
 import Express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv'
+import UserRoote from './routes/user.route.js'
 
 dotenv.config()
 mongoose.connect(process.env.MONGO)
@@ -11,6 +12,8 @@ console.log("Database is connected")
 })
 
 const app = Express()
+
+app.use('/api/user',UserRoote)
 
 app.listen(3000,()=>{
     console.log("listening to port 3000!!")

@@ -1,4 +1,4 @@
-import Express from 'express';
+import Express, { response } from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv'
 import UserRoote from './routes/user.route.js'
@@ -17,6 +17,17 @@ app.use(Express.json())
 
 app.use('/api/user',UserRoote)
 app.use('/api/auth',AuthRoote)
+
+app.use((err,req,res,next)=>{
+const statusCode = err.statusCode || 500
+const message = err.message || 'Internal Server Error'
+res.status(statusCode).json({
+    Success: false,
+    statusCode,
+    message
+
+})
+})
 
 app.listen(3000,()=>{
     console.log("listening to port 3000!!")

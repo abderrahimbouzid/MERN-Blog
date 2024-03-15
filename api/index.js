@@ -19,13 +19,12 @@ app.use('/api/user',UserRoote)
 app.use('/api/auth',AuthRoote)
 
 app.use((err,req,res,next)=>{
-const statusCode = err.statusCode || 500
-const message = err.message || 'Internal Server Error'
+const statusCode = err.statusCode || 500;
+const message = err.message || 'Internal Server Error';
 res.status(statusCode).json({
     Success: false,
     statusCode,
-    message
-
+    message,
 })
 })
 
